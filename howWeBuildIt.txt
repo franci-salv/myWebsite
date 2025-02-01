@@ -1,0 +1,11 @@
+use Vercel for hosting the website
+
+next Js or Astro for frame work to build it
+
+use react 
+
+
+for business use squarespace
+
+buy your DNS - from namecheap.com
+

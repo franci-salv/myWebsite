@@ -1,25 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Francesco's website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collapsible Horizontal Tabs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        
+        /* Navigation Bar */
+        .nav {
+            display: flex;
+            width: 80%;
+            background: #007bff;
+            justify-content: center;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+        .nav button {
+            flex: 1;
+            background: #0056b3;
+            color: white;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .nav button:hover {
+            background: #003d82;
+        }
+        .nav button.active {
+            background: #003d82;
+        }
+
+        /* Content Area */
+        .content {
+            position: relative;
+            width: 80%;
+            height: 300px;
+            background: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 8px 8px;
+            padding: 20px;
+        }
+        .section-content {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            bottom: 20px;
+            padding: 20px;
+            display: none;
+            font-size: 18px;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .section-content.active {
+            display: block;
+        }
+    </style>
 </head>
-
 <body>
-<h1>Hey, I am Francesco Salvatore </h1>
 
-<h2>About me</h2>
+    <!-- Horizontal Tab Navigation -->
+    <div class="nav">
+        <button onclick="toggleSection(0)" id="tab-0">Website progress</button>
+        <button onclick="toggleSection(1)" id="tab-1">Me</button>
+        <button onclick="toggleSection(2)" id="tab-2">Blog</button>
+    </div>
 
-<p>I am a student in TUe study mechanical engineering and yes I'm building my website during my programming lecture because we're learning basic ass python 
+    <!-- Content Area -->
+    <div class="content">
+        <div class="section-content" id="section-0">I've made a nice update to the website layout I'm working hard in the background here. Trying to create a blog with a style I've never seen before lets see if we manage to let it work</div>
+        <div class="section-content" id="section-1">Hey I dont know if you are seeing this website at this stage. You must be someone I admire or know very well. just a brief intro my name is Francesco Davide Alessandro Salvatore. I'm a student at TU/e in the netherlands studying mechanical engineering but I always like to have side projects or side challanges to work on so thats why I'm creating this</div>
+        <div class="section-content" id="section-2">yes I will be linking my blog from obsidian to here like Networkchuck showed on his youtube channel but that'll be later in the process.</div>
+    </div>
 
-</p>
+    <script>
+        let openSection = null;
 
-<h2>What am I working on?</h2>
+        function toggleSection(index) {
+            const sections = document.querySelectorAll(".section-content");
+            const tabs = document.querySelectorAll(".nav button");
 
-<p>
-    I am working on my CBL #2 building a launching mechanism for an airplane
-</p>
+            // Close currently open section
+            if (openSection !== null) {
+                sections[openSection].classList.remove("active");
+                tabs[openSection].classList.remove("active");
+            }
 
+            // Open the clicked section
+            if (openSection !== index) {
+                sections[index].classList.add("active");
+                tabs[index].classList.add("active");
+                openSection = index;
+            } else {
+                openSection = null;
+            }
+        }
+    </script>
 
 </body>
-
 </html>
